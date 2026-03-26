@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('catering_bonuses', function (Blueprint $table) {
             $table->id();
+
+            $table->string('name');
+            $table->string('photo');
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('category_package_id')->constrained()->cascadeOnDelete();
+            $table->softDeletes();
+
             $table->timestamps();
         });
     }
