@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('catering_photos', function (Blueprint $table) {
             $table->id();
+
+            $table->string('photo');
+            $table->foreignId('catering_package_id')->constrained()->cascadeOnDelete();
+            $table->softDeletes();
+            
             $table->timestamps();
         });
     }

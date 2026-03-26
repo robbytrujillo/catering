@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('photo');
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('category_package_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('catering_package_id')->constrained()->cascadeOnDelete();
             $table->softDeletes();
 
             $table->timestamps();

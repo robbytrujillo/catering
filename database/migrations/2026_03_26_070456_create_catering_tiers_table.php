@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('catering_tiers', function (Blueprint $table) {
             $table->id();
+
+            $table->string('name');
+            $table->string('photo');
+            $table->string('tagline');
+            $table->unsignedBigInteger('quality');
+            $table->unsignedBigInteger('price');
+            $table->unsignedBigInteger('duration');
+            $table->foreignId('catering_package_id')->constrained()->cascadeOnDelete();
+            $table->softDeletes();
+
             $table->timestamps();
         });
     }
