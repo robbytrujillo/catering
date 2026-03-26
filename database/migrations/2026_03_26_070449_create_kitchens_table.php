@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('kitchens', function (Blueprint $table) {
             $table->id();
+
+            $table->string('name');
+            $table->string('year');
+            $table->string('photo');
+            $table->softDeletes();
+            
             $table->timestamps();
         });
     }
