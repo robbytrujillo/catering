@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('tier_benefits', function (Blueprint $table) {
             $table->id();
+
+            $table->string('name');
+            $table->foreignId('catering_tier_id')->constrained()->cascadeOnDelete();
+            $table->softDeletes();
+            
             $table->timestamps();
         });
     }
