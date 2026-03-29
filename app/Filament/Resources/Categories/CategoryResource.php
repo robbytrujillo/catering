@@ -31,7 +31,25 @@ class CategoryResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return CategoriesTable::configure($table);
+        // return CategoriesTable::configure($table);
+        return $table 
+            ->columns([
+                //
+            ])
+            ->filters([
+                Tables\Filters\TrashedFilter::make(),
+            ])
+            ->actions([
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\ForceDeleteBulkAction::make(),
+                    Tables\Actions\RestoreBulkAction::make(),
+                ]),
+            ]);
     }
 
     public static function getRelations(): array
