@@ -35,6 +35,13 @@ class CategoryResource extends Resource
         return $table 
             ->columns([
                 //
+                Forms\Components\TextInput::make('name'),
+                ->required(),
+                ->maxLength(255),
+                
+                Forms\Components\FileUpload::make('photo'),
+                ->image(),
+                ->required(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
