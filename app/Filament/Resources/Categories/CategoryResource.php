@@ -10,6 +10,7 @@ use App\Filament\Resources\Categories\Tables\CategoriesTable;
 use App\Models\Category;
 use BackedEnum;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Form;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
@@ -26,8 +27,32 @@ class CategoryResource extends Resource
 
     public static function form(Schema $schema): Schema
     {
-        return CategoryForm::configure($schema);
+        // 
+        return $schema
+            ->schema([
+                Forms\Components\TextInput::make('name')
+                ->required()
+                ->maxLength(255),
+                
+                Forms\Components\FileUpload::make('photo')
+                ->image()
+                ->required(),
+            ]);
     }
+    
+    // public static function form(Form $form): Form
+    // {
+    //     return $form
+    //         ->schema([
+    //             Forms\Components\TextInput::make('name')
+    //             ->required()
+    //             ->maxLength(255),
+                
+    //             Forms\Components\FileUpload::make('photo')
+    //             ->image()
+    //             ->required(),
+    //         ]);
+    // }
 
     public static function table(Table $table): Table
     {
@@ -35,13 +60,7 @@ class CategoryResource extends Resource
         return $table 
             ->columns([
                 //
-                Forms\Components\TextInput::make('name'),
-                ->required(),
-                ->maxLength(255),
                 
-                Forms\Components\FileUpload::make('photo'),
-                ->image(),
-                ->required(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
