@@ -18,6 +18,7 @@ class CategoryResource extends Resource
     protected static ?string $model = Category::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-folder';
+    protected static ?string $navigationGroup = 'Management';
 
     public static function form(Form $form): Form
     {
@@ -29,7 +30,12 @@ class CategoryResource extends Resource
                     ->maxLength(255),
 
                 Forms\Components\FileUpload::make('photo')
-                    ->image()
+                    // ->image()
+                    // ->required(),
+                     ->image()
+                    ->directory('categories')
+                    ->disk('public')
+                    ->visibility('public')
                     ->required(),
             ]);
     }
@@ -39,7 +45,10 @@ class CategoryResource extends Resource
         return $table
             ->columns([
                 //
-                Tables\Columns\ImageColumn::make('photo'),
+                Tables\Columns\ImageColumn::make('photo')
+                    ->disk('public'),
+                    // ->circular(),    
+                
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
             ])

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\CateringPackage;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -20,9 +21,21 @@ class Category extends Model
         'photo',
     ];
 
-    public function setNameAttribute($value) {
-        $this->attibutes['name'] = $value;
-        $this->attibutes['slug'] = Str::slug($value);
+    // public function setNameAttribute($value) {
+    //     $this->attibutes['name'] = $value;
+    //     $this->attibutes['slug'] = Str::slug($value);
+    // }
+
+    protected function name(): Attribute
+    {
+        return Attribute::make(
+            set: function ($value) {
+                return [
+                    'name' => $value,
+                    'slug' => Str::slug($value),
+                ];
+            },
+        );
     }
 
     // 1 category memiliki > dari 1 cateringPackages
