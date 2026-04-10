@@ -34,6 +34,7 @@ class CategoryResource extends Resource
                     // ->required(),
                      ->image()
                     ->directory('categories')
+                    // ->directory('/')
                     ->disk('public')
                     ->visibility('public')
                     ->required(),
