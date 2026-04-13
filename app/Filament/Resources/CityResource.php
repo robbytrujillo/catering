@@ -34,7 +34,7 @@ class CityResource extends Resource
                     // ->image()
                     // ->required(),
                      ->image()
-                    ->directory('caties')
+                    ->directory('cities')
                     // ->directory('/')
                     ->disk('public')
                     ->visibility('public')

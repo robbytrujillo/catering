@@ -24,6 +24,23 @@ class KitchenResource extends Resource
         return $form
             ->schema([
                 //
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+                
+                Forms\Components\TextInput::make('year')
+                    ->required()
+                    ->maxLength(255),
+
+                Forms\Components\FileUpload::make('photo')
+                    // ->image()
+                    // ->required(),
+                     ->image()
+                    ->directory('kitchens')
+                    // ->directory('/')
+                    ->disk('public')
+                    ->visibility('public')
+                    ->required(),
             ]);
     }
 
@@ -32,6 +49,14 @@ class KitchenResource extends Resource
         return $table
             ->columns([
                 //
+                Tables\Columns\ImageColumn::make('photo')
+                    ->disk('public')
+                    ->circular(),    
+                
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
+                
+                Tables\Columns\TextColumn::make('name'),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
