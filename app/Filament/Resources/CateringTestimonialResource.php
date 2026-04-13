@@ -19,11 +19,35 @@ class CateringTestimonialResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationGroup = 'Customers';
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 //
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+
+                Forms\Components\FileUpload::make('photo')
+                    // ->image()
+                    // ->required(),
+                    ->image()
+                    ->directory('cateringTestimonials')
+                    // ->directory('/')
+                    ->disk('public')
+                    ->visibility('public')
+                    ->required(),
+
+                Forms\Components\Select::make('catering_package_id')
+                    ->relationship('cateringPackage', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->required(),
+
+                Forms\Components\TextArea::make('message')
+                    ->required(),
             ]);
     }
 
@@ -32,11 +56,20 @@ class CateringTestimonialResource extends Resource
         return $table
             ->columns([
                 //
+                Tables\Columns\ImageColumn::make('cateringPackage.thumbnail'),    
+                
+                Tables\Columns\ImageColumn::make('photo')
+                    ->disk('public')
+                    ->circular(),    
+                
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([

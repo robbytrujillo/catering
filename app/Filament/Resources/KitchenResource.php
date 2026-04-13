@@ -19,6 +19,8 @@ class KitchenResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationGroup = 'Foods';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -62,6 +64,7 @@ class KitchenResource extends Resource
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
