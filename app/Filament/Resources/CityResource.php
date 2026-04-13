@@ -19,11 +19,26 @@ class CityResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationGroup = 'Management';
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 //
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+
+                Forms\Components\FileUpload::make('photo')
+                    // ->image()
+                    // ->required(),
+                     ->image()
+                    ->directory('caties')
+                    // ->directory('/')
+                    ->disk('public')
+                    ->visibility('public')
+                    ->required(),
             ]);
     }
 
@@ -32,11 +47,18 @@ class CityResource extends Resource
         return $table
             ->columns([
                 //
+                Tables\Columns\ImageColumn::make('photo')
+                    ->disk('public')
+                    ->circular(),    
+                
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
