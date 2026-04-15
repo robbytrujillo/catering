@@ -25,6 +25,20 @@ class CateringPackageResource extends Resource
         return $form
             ->schema([
                 //
+                Fieldset::make('Details')
+                ->schema([
+                    Forms\Components\TextInput::make('name')
+                    ->maxLength(255)
+                    ->required(),
+                    
+                    Forms\Components\TextInput::make('name')
+                    ->maxLength(255)
+                    ->required(),
+                    
+                    Forms\Components\TextInput::make('name')
+                    ->maxLength(255)
+                    ->required(),
+                ])
             ]);
     }
 
