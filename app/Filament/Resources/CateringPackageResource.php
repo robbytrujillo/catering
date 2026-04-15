@@ -31,12 +31,28 @@ class CateringPackageResource extends Resource
                     ->maxLength(255)
                     ->required(),
                     
-                    Forms\Components\TextInput::make('name')
-                    ->maxLength(255)
+                    Forms\Components\FileUpload::make('thumbnail')
+                    // ->image()
+                    // ->required(),
+                    ->image()
+                    ->directory('cateringPackages')
+                    // ->directory('/')
+                    ->disk('public')
+                    ->visibility('public')
                     ->required(),
                     
-                    Forms\Components\TextInput::make('name')
-                    ->maxLength(255)
+                    Forms\Components\Repeater::make('photos')
+                    // ->image()
+                    // ->required(),
+                    ->relationship('photos')
+                    // ->directory('/')
+                    ->schema([
+                        Forms\Components\FileUpload::make('photo')
+                        ->disk('public')
+                        ->visibility('public')
+                        ->required(),
+                    ])
+                    ->visibility('public')
                     ->required(),
                 ])
             ]);
