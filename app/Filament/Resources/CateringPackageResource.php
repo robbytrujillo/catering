@@ -6,6 +6,7 @@ use App\Filament\Resources\CateringPackageResource\Pages;
 use App\Filament\Resources\CateringPackageResource\RelationManagers;
 use App\Models\CateringPackage;
 use Filament\Forms;
+use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -51,8 +52,37 @@ class CateringPackageResource extends Resource
                         ->disk('public')
                         ->visibility('public')
                         ->required(),
+                    ]),                        
+                ]),
+
+                Fieldset::make('Additional')
+                ->schema([
+                    Forms\Components\Textarea::make('about')
+                    ->required(),
+                    
+                    Forms\Components\Select::make('is_popular')
+                    ->options([
+                        true => 'Popular',
+                        false => 'Not Popular'
                     ])
-                    ->visibility('public')
+                    ->required(),
+
+                    Forms\Components\Select::make('city_id')
+                    ->relationship('city', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->required(),
+                    
+                    Forms\Components\Select::make('kitchen_id')
+                    ->relationship('kitchen', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->required(),
+                    
+                    Forms\Components\Select::make('category_id')
+                    ->relationship('category', 'name')
+                    ->searchable()
+                    ->preload()
                     ->required(),
                 ])
             ]);
