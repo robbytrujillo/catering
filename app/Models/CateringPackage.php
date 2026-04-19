@@ -30,8 +30,8 @@ class CateringPackage extends Model
     ];
 
     public function setNameAttribute($value) {
-        $this->attibutes['name'] = $value;
-        $this->attibutes['slug'] = Str::slug($value);
+        $this->attributes['name'] = $value;
+        $this->attributes['slug'] = Str::slug($value);
     }
 
     public function category(): BelongsTo {
