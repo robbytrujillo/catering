@@ -93,6 +93,20 @@ class CateringPackageResource extends Resource
         return $table
             ->columns([
                 //
+                Tables\Columns\ImageColumn::make('thumbnail'),    
+                
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
+                
+                Tables\Columns\TextColumn::make('kitchen.name'),
+                
+                Tables\Columns\IconColumn::make('is_popular')
+                    ->boolean()
+                    ->trueColor('success')
+                    ->falseColor('danger')
+                    ->trueIcon('heroicon-o-check-circle')
+                    ->falseIcon('heroicon-o-x-circle')
+                    ->label('popular'),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
