@@ -10,6 +10,7 @@ use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -109,6 +110,18 @@ class CateringPackageResource extends Resource
                     ->label('popular'),
             ])
             ->filters([
+                SelectFilter::make('city_id')
+                ->label('City')
+                ->relationship('city', 'name'),
+
+                SelectFilter::make('kitchen_id')
+                ->label('Kitchen')
+                ->relationship('kitchen', 'name'),
+                 
+                SelectFilter::make('category_id')
+                ->label('Category')
+                ->relationship('category', 'name'),
+
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
