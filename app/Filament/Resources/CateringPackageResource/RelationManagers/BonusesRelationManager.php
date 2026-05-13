@@ -21,6 +21,16 @@ class BonusesRelationManager extends RelationManager
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+                
+                    Forms\Components\FileUpload::make('photo')
+                    ->image()
+                    ->required(),
+                
+                    Forms\Components\Select::make('category_id')
+                    ->relationship('category','name')
+                    ->searchable()
+                    ->preload()
+                    ->required(),
             ]);
     }
 
@@ -29,7 +39,10 @@ class BonusesRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('name')
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\ImageColumn::make('photo'),
+
+                Tables\Columns\TextColumn::make('name')
+                ->searchable(),
             ])
             ->filters([
                 //
