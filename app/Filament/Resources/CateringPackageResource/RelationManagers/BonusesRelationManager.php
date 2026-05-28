@@ -39,7 +39,8 @@ class BonusesRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('name')
             ->columns([
-                Tables\Columns\ImageColumn::make('photo'),
+                Tables\Columns\ImageColumn::make('photo')
+                ->circular(),
 
                 Tables\Columns\TextColumn::make('name')
                 ->searchable(),

@@ -95,7 +95,8 @@ class CateringPackageResource extends Resource
         return $table
             ->columns([
                 //
-                Tables\Columns\ImageColumn::make('thumbnail'),    
+                Tables\Columns\ImageColumn::make('thumbnail')
+                    ->circular(),    
                 
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
