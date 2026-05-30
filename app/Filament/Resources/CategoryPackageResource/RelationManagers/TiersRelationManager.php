@@ -35,6 +35,7 @@ class TiersRelationManager extends RelationManager
                     ->numeric()
                     ->prefix('IDR'),
                 
+                // quality = quantity
                 Forms\Components\TextInput::make('quality')
                     ->required()
                     ->numeric()
@@ -64,7 +65,7 @@ class TiersRelationManager extends RelationManager
                 Tables\Columns\ImageColumn::make('photo'),
 
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('quality'),
+                Tables\Columns\TextColumn::make('quality'), // quality = quantity
                 Tables\Columns\TextColumn::make('duration'),
             ])
             ->filters([
