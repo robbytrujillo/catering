@@ -35,7 +35,7 @@ class TiersRelationManager extends RelationManager
                     ->numeric()
                     ->prefix('IDR'),
                 
-                Forms\Components\TextInput::make('quantity')
+                Forms\Components\TextInput::make('quality')
                     ->required()
                     ->numeric()
                     ->prefix('People'),
@@ -61,7 +61,11 @@ class TiersRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('name')
             ->columns([
+                Tables\Columns\ImageColumn::make('photo'),
+
                 Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('quality'),
+                Tables\Columns\TextColumn::make('duration'),
             ])
             ->filters([
                 //

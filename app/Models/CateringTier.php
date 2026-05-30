@@ -17,7 +17,7 @@ class CateringTier extends Model
         'name',
         'photo',
         'tagline',
-        'quantity',
+        'quality',
         'price',
         'duration',
         'catering_package_id',
