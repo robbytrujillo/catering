@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\CategoryPackageResource\RelationManagers\TiersRelationManager;
 use App\Filament\Resources\CateringPackageResource\Pages;
 use App\Filament\Resources\CateringPackageResource\RelationManagers;
 use App\Filament\Resources\CateringPackageResource\RelationManagers\BonusesRelationManager;
@@ -144,6 +145,7 @@ class CateringPackageResource extends Resource
         return [
             //
             BonusesRelationManager::class,
+            TiersRelationManager::class,
         ];
     }
 
