@@ -50,6 +50,16 @@ class CateringSubscriptionResource extends Resource
                                         $set('ended_at', null);
                                     }),
 
+                                    Forms\Components\Select::make('catering_tier_id')
+                                        ->label('Catering Tier')
+                                        ->options(function (callable $get) {
+                                            $cateringPackageId = $get('catering_package_id');
+                                            if ($cateringPackageId) {
+                                                return CateringTier::where('catering_package_id', $cateringPackageId)
+                                                    ->pluck('name', 'id');
+                                            }
+                                        }),
+
                             ])
                         ]),
 
