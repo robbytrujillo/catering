@@ -58,8 +58,25 @@ class CateringSubscriptionResource extends Resource
                                                 return CateringTier::where('catering_package_id', $cateringPackageId)
                                                     ->pluck('name', 'id');
                                             }
-                                        }),
+                                            return [];
+                                        })
+                                        ->searchable()
+                                        ->required()
+                                        ->reactive()
+                                        ->afterStateUpdated(function ($state, callable $set) {
+                                            $cateringTier = CateringTier::find($state);
+                                            $price = $cateringTier ? $cateringTier->price : 0;
 
+                                            $quality = $cateringTier ? $cateringTier->quality : 0;
+                                            $duration = $cateringTier ? $cateringTier->duration : 0;
+
+                                            $set('price', $price);
+                                            $set('quality', $quality);
+                                            $set('duration', $duration);
+
+                                            $tax = 0.11;
+                                            $totalTaxAmount = $tax * $price;
+                                        })
                             ])
                         ]),
 
