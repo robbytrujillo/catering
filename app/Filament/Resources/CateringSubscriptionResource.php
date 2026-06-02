@@ -63,7 +63,7 @@ class CateringSubscriptionResource extends Resource
                                         })
                                         ->searchable()
                                         ->required()
-                                        ->reactive()
+                                        ->live()
                                         ->afterStateUpdated(function ($state, callable $set) {
                                             $cateringTier = CateringTier::find($state);
                                             $price = $cateringTier ? $cateringTier->price : 0;
