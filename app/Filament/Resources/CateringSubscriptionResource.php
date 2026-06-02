@@ -77,7 +77,58 @@ class CateringSubscriptionResource extends Resource
 
                                             $tax = 0.11;
                                             $totalTaxAmount = $tax * $price;
-                                        })
+
+                                            $totalAmount = $price + $totalTaxAmount;
+                                            $set('total_amount', number_format($totalAmount, 0, '', ''));
+                                            $set('total_tax_amount', number_format($totalTaxAmount, 0, '', ''));
+                                        }),
+
+                                        Forms\Components\TextInput::make('price')
+                                            ->required()
+                                            ->readOnly()
+                                            ->numeric()
+                                            ->prefix('IDR'),
+
+                                        Forms\Components\TextInput::make('total_amount')
+                                            ->required()
+                                            ->readOnly()
+                                            ->numeric()
+                                            ->prefix('IDR'),
+
+                                        Forms\Components\TextInput::make('total_tax_amount')
+                                            ->required()
+                                            ->readOnly()
+                                            ->numeric()
+                                            ->helperText('Pajak 11%')
+                                            ->prefix('IDR'),
+
+                                        Forms\Components\TextInput::make('quality')
+                                            ->required()
+                                            ->readOnly()
+                                            ->numeric()
+                                            ->prefix('People'),
+
+                                        Forms\Components\TextInput::make('duration')
+                                            ->required()
+                                            ->readOnly()
+                                            ->numeric()
+                                            ->prefix('Days'),
+                                        
+                                        Forms\Components\DatePicker::make('started_at')
+                                            ->required()
+                                            ->reactive()
+                                            ->afterStateUpdated(function ($state, callable $set, callable $get) {
+                                                $duration = $get('duration');
+                                                if ($state && $duration) {
+                                                    $endedAt = \Carbon\Carbon::parse($state)->addDays($duration);
+                                                    $set('ended_at', $endedAt->format('Y d m'));
+                                                } else {
+                                                    $set('ended_at', null);
+                                                }
+                                            }),
+
+                                        Forms\Components\DatePicker::make('ended_at')
+                                            ->required(),
                             ])
                         ]),
 
