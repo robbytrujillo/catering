@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CateringSubscriptionResource\Pages;
 use App\Filament\Resources\CateringSubscriptionResource\RelationManagers;
 use App\Models\CateringSubscription;
+use App\Models\CateringTier;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
