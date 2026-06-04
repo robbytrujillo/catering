@@ -13,7 +13,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Laravel\Prompts\Grid;
+use Filament\Forms\Components\Grid;
+// use Laravel\Prompts\Grid;
 
 class CateringSubscriptionResource extends Resource
 {
@@ -28,7 +29,7 @@ class CateringSubscriptionResource extends Resource
                 //
                 Forms\Components\Wizard::make([
                     Forms\Components\Wizard\Step::make('Product and Price')
-                        ->icon('heroicon-,-shopping-bag')
+                        ->icon('heroicon-o-shopping-bag')
                         ->completedIcon('heroicon-m-hand-thumb-up')
                         ->description('Which catering you choose')
                         ->schema([
