@@ -121,7 +121,7 @@ class CateringSubscriptionResource extends Resource
                                                 $duration = $get('duration');
                                                 if ($state && $duration) {
                                                     $endedAt = \Carbon\Carbon::parse($state)->addDays($duration);
-                                                    $set('ended_at', $endedAt->format('Y d m'));
+                                                    $set('ended_at', $endedAt->format('Y-m-d'));
                                                 } else {
                                                     $set('ended_at', null);
                                                 }
