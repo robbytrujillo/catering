@@ -116,7 +116,7 @@ class CateringSubscriptionResource extends Resource
                                         
                                         Forms\Components\DatePicker::make('started_at')
                                             ->required()
-                                            ->reactive()
+                                            ->live()
                                             ->afterStateUpdated(function ($state, callable $set, callable $get) {
                                                 $duration = $get('duration');
                                                 if ($state && $duration) {
