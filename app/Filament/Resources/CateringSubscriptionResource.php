@@ -133,7 +133,58 @@ class CateringSubscriptionResource extends Resource
                             ])
                         ]),
 
-                ])
+                        Forms\Components\Wizard\Step::make('Customer Information')
+                            ->completedIcon('heroicon-m-hand-thumb-up')
+                            ->description('For our marketing')
+                            ->schema([
+
+                                Grid::make(2)
+                                    ->schema([
+                                        Forms\Components\TextInput::make('name')
+                                            ->required()
+                                            ->maxLength(255),
+                                            
+                                        Forms\Components\TextInput::make('phone')
+                                            ->required()
+                                            ->maxLength(255),
+                                            
+                                        Forms\Components\TextInput::make('email')
+                                            ->required()
+                                            ->maxLength(255),
+                                            
+                                ]),
+                            ]),
+                        
+                        Forms\Components\Wizard\Step::make('Delivery Information')
+                            ->completedIcon('heroicon-m-hand-thumb-up')
+                            ->description('Put your correct address')
+                            ->schema([
+
+                                Grid::make(2)
+                                    ->schema([
+                                        Forms\Components\TextInput::make('city')
+                                            ->required()
+                                            ->maxLength(255),
+                                            
+                                        Forms\Components\TextInput::make('post_code')
+                                            ->required()
+                                            ->maxLength(255),
+                                            
+                                        Forms\Components\TextInput::make('delivery_time')
+                                            ->required()
+                                            ->maxLength(255),
+                                        
+                                        Forms\Components\Textarea::make('address')
+                                            ->required()
+                                            ->maxLength(255),
+                                            
+                                        Forms\Components\TextArea::make('notes')
+                                            ->required()
+                                            ->maxLength(255),
+                                            
+                                ]),
+                            ]),
+                ]),
             ]);
     }
 
