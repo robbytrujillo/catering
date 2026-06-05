@@ -14,6 +14,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\ToggleButtons;
+
 // use Laravel\Prompts\Grid;
 
 class CateringSubscriptionResource extends Resource
@@ -184,6 +186,34 @@ class CateringSubscriptionResource extends Resource
                                             
                                 ]),
                             ]),
+
+                    Forms\Components\Wizard\Step::make('Payment Information')
+                            ->completedIcon('heroicon-m-hand-thumb-up')
+                            ->description('Review your payment')
+                            ->schema([
+
+                                Grid::make(3)
+                                    ->schema([
+                                        Forms\Components\TextInput::make('booking_trx_id')
+                                            ->required()
+                                            ->maxLength(255),
+                                            
+                                        ToggleButtons::make('is_paid')
+                                            ->label('Apakah sudah membayar?')
+                                            ->boolean()
+                                            ->grouped()
+                                            ->icons([
+                                                true => 'heroicon-o-pencil',
+                                                false => 'heroicon-o-pencil',
+                                            ])
+                                            ->required(),
+                                            
+                                        Forms\Components\FileUpload::make('proof')
+                                            ->image()
+                                            ->required(),
+                                        
+                                ]),
+                            ]),        
                 ]),
             ]);
     }
