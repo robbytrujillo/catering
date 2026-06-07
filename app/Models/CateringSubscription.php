@@ -28,7 +28,7 @@ class CateringSubscription extends Model
         'total_amount',
         'price',
         'duration',
-        'quantity',
+        'quality',
         'total_tax_amount',
         'is_paid',
         'started_at',
