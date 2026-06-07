@@ -214,7 +214,10 @@ class CateringSubscriptionResource extends Resource
                                         
                                 ]),
                             ]),        
-                ]),
+                ])
+                ->columnSpan('full') // use full width for the wizard
+                ->colummns(1) // Make sure the form has single column layout 
+                ->skippable(),
             ]);
     }
 
