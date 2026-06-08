@@ -27,7 +27,7 @@ return new class extends Migration
             $table->unsignedBigInteger('total_amount');
             $table->unsignedBigInteger('price');
             $table->unsignedBigInteger('duration');
-            $table->unsignedBigInteger('quantity');
+            $table->unsignedBigInteger('quality');
             $table->unsignedBigInteger('total_tax_amount');
             $table->boolean('is_paid');
             $table->date('started_at');
