@@ -226,6 +226,22 @@ class CateringSubscriptionResource extends Resource
         return $table
             ->columns([
                 //
+                Tables\Columns\ImageColumn::make('cateringPackage.thumbnail'),
+                
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
+                
+                Tables\Columns\TextColumn::make('booking_trx_id')
+                    ->searchable(),
+                
+                Tables\Columns\IconColumn::make('is_paid')
+                    ->boolean()
+                    ->trueColor('success')    
+                    ->falseColor('danger')    
+                    ->trueIcon('heroicon-o-')    
+                ->searchable(),
+
+
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
