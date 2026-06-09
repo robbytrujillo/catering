@@ -7,14 +7,15 @@ use App\Filament\Resources\CateringSubscriptionResource\RelationManagers;
 use App\Models\CateringSubscription;
 use App\Models\CateringTier;
 use Filament\Forms;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\ToggleButtons;
 
 // use Laravel\Prompts\Grid;
 
@@ -244,9 +245,14 @@ class CateringSubscriptionResource extends Resource
 
             ])
             ->filters([
+                SelectFilter::make('catering_package_id')
+                    ->label('Catering Package')
+                    ->relationship('cateringPackage', 'name'),
+
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
