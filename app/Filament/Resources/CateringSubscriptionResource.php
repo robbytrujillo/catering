@@ -238,9 +238,9 @@ class CateringSubscriptionResource extends Resource
                     ->boolean()
                     ->trueColor('success')    
                     ->falseColor('danger')    
-                    ->trueIcon('heroicon-o-')    
-                ->searchable(),
-
+                    ->trueIcon('heroicon-o-check-circle')    
+                    ->falseIcon('heroicon-o-x-circle')
+                    ->label('Terverifikasi'),
 
             ])
             ->filters([
