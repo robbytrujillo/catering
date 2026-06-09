@@ -209,8 +209,15 @@ class CateringSubscriptionResource extends Resource
                                             ])
                                             ->required(),
                                             
+                                        // Forms\Components\FileUpload::make('proof')
+                                        //     ->image()
+                                        //     ->required(),
+
                                         Forms\Components\FileUpload::make('proof')
                                             ->image()
+                                            ->disk('public')
+                                            ->directory('proofs')
+                                            ->visibility('public')
                                             ->required(),
                                         
                                 ]),
