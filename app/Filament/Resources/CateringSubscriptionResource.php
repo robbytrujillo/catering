@@ -24,6 +24,8 @@ class CateringSubscriptionResource extends Resource
     protected static ?string $model = CateringSubscription::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    
+    protected static ?string $navigationGroup = 'Customers';
 
     public static function getNavigationBadge(): ?string {
         return (string) CateringSubscription::where('is_paid', false)->count();
