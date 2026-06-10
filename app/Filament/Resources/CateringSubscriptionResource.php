@@ -281,10 +281,11 @@ class CateringSubscriptionResource extends Resource
                             ->success()
                             ->body('The order has been succesfully approved.')
                             ->send();
+
                     })
                     ->color('success')
                     ->requiresConfirmation()
-                    ->visible(fn (CateringSubscription $record) => !$record->is_paid)
+                    ->visible(fn (CateringSubscription $record) => !$record->is_paid),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
