@@ -25,6 +25,10 @@ class CateringSubscriptionResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getNavigationBadge(): ?string {
+        return (string) CateringSubscription::where('is_paid', false)->count();
+    }
+
     public static function form(Form $form): Form
     {
         return $form
