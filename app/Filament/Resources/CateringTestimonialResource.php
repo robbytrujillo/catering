@@ -56,7 +56,8 @@ class CateringTestimonialResource extends Resource
         return $table
             ->columns([
                 //
-                Tables\Columns\ImageColumn::make('cateringPackage.thumbnail'),    
+                Tables\Columns\ImageColumn::make('cateringPackage.thumbnail')
+                    ->circular(),    
                 
                 Tables\Columns\ImageColumn::make('photo')
                     ->disk('public')
