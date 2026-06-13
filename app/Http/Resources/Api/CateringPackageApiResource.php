@@ -35,7 +35,7 @@ class CateringPackageApiResource extends JsonResource
             'photos' => CateringPhoto::collection($this->whenLoaded('photos')),
             'bonuses' => CateringBonus::collection($this->whenLoaded('bonuses')),
             'testimonials' => CateringTestimonial::collection($this->whenLoaded('testimonials')),
-            'tiers' => new CateringTier($this->whenLoaded('tiers')),
+            'tiers' => CateringTier::collection($this->whenLoaded('tiers')),
 
         ];
     }
