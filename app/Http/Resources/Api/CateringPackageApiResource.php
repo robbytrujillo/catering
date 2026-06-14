@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Api;
 
+use App\Http\Resources\Api\CityApiResource;
 use App\Models\Category;
 use App\Models\CateringBonus;
 use App\Models\CateringPhoto;
@@ -29,7 +30,7 @@ class CateringPackageApiResource extends JsonResource
             'is_popular' => $this->is_popular,
             'thumbnail' => $this->thumbnail,
             'about' => $this->about,
-            'city' => new City($this->whenLoaded('city')),
+            'city' => new CityApiResource($this->whenLoaded('city')),
             'category' => new Category($this->whenLoaded('category')),
             'kitchen' => new Kitchen($this->whenLoaded('kitchen')),
             'photos' => CateringPhoto::collection($this->whenLoaded('photos')),
