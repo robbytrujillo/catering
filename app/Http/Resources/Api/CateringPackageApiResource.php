@@ -44,6 +44,8 @@ class CateringPackageApiResource extends JsonResource
             'testimonials' => CateringTestimonialApiResource::collection($this->whenLoaded('testimonials')),
             'tiers' => CateringTierApiResource::collection($this->whenLoaded('tiers')),
 
+            // Perbedaan new dan collection terletak pada (new hanya bisa memilih satu data, sedangkan collection bisa lebih dari satu)
+
         ];
     }
 }
