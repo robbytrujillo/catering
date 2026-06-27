@@ -2,7 +2,13 @@
 
 namespace App\Http\Resources\Api;
 
+use App\Http\Resources\Api\CategoryApiResource;
+use App\Http\Resources\Api\CateringBonusApiResource;
+use App\Http\Resources\Api\CateringPhotoApiResource;
+use App\Http\Resources\Api\CateringTestimonialApiResource;
+use App\Http\Resources\Api\CateringTierApiResource;
 use App\Http\Resources\Api\CityApiResource;
+use App\Http\Resources\Api\KitchenApiResource;
 use App\Models\Category;
 use App\Models\CateringBonus;
 use App\Models\CateringPhoto;
@@ -31,12 +37,12 @@ class CateringPackageApiResource extends JsonResource
             'thumbnail' => $this->thumbnail,
             'about' => $this->about,
             'city' => new CityApiResource($this->whenLoaded('city')),
-            'category' => new Category($this->whenLoaded('category')),
-            'kitchen' => new Kitchen($this->whenLoaded('kitchen')),
-            'photos' => CateringPhoto::collection($this->whenLoaded('photos')),
-            'bonuses' => CateringBonus::collection($this->whenLoaded('bonuses')),
-            'testimonials' => CateringTestimonial::collection($this->whenLoaded('testimonials')),
-            'tiers' => CateringTier::collection($this->whenLoaded('tiers')),
+            'category' => new CategoryApiResource($this->whenLoaded('category')),
+            'kitchen' => new KitchenApiResource($this->whenLoaded('kitchen')),
+            'photos' => CateringPhotoApiResource::collection($this->whenLoaded('photos')),
+            'bonuses' => CateringBonusApiResource::collection($this->whenLoaded('bonuses')),
+            'testimonials' => CateringTestimonialApiResource::collection($this->whenLoaded('testimonials')),
+            'tiers' => CateringTierApiResource::collection($this->whenLoaded('tiers')),
 
         ];
     }
