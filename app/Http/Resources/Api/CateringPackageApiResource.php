@@ -36,9 +36,11 @@ class CateringPackageApiResource extends JsonResource
             'is_popular' => $this->is_popular,
             'thumbnail' => $this->thumbnail,
             'about' => $this->about,
+
             'city' => new CityApiResource($this->whenLoaded('city')),
             'category' => new CategoryApiResource($this->whenLoaded('category')),
             'kitchen' => new KitchenApiResource($this->whenLoaded('kitchen')),
+            
             'photos' => CateringPhotoApiResource::collection($this->whenLoaded('photos')),
             'bonuses' => CateringBonusApiResource::collection($this->whenLoaded('bonuses')),
             'testimonials' => CateringTestimonialApiResource::collection($this->whenLoaded('testimonials')),
