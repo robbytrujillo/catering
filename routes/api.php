@@ -7,7 +7,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-// Routing API
+// Routing API integration
 Route::get('/catering-packages/{cateringPackage:slug}', [CateringPackageController::class, 'show']);
 Route::apiResource('/catering-packages', CateringPackageController::class);
 
