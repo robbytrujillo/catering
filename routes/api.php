@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CateringPackageController;
+use App\Http\Controllers\Api\CateringSubscriptionController;
 use App\Http\Controllers\Api\CateringTestimonialController;
 use App\Http\Controllers\Api\CityController;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ Route::get('/user', function (Request $request) {
 Route::get('/catering-packages/{cateringPackage:slug}', [CateringPackageController::class, 'show']);
 Route::apiResource('/catering-packages', CateringPackageController::class);
 
-Route::get('/filters/catering-packages/', [CateringPackageController::class, 'filterPackages']);
+Route::get('/filters/catering-packages', [CateringPackageController::class, 'filterPackages']);
 
 Route::get('/category/{category:slug}', [CategoryController::class, 'show']);
 Route::apiResource('/categories', CategoryController::class);
@@ -28,5 +29,5 @@ Route::apiResource('/city', CityController::class);
 
 Route::apiResource('/testimonials', CateringTestimonialController::class);
 
-Route::post('/booking-transaction', [CateringSubscriptionPackageController::class, 'store']);
-Route::post('/check-booking', [CateringSubscriptionPackageController::class, 'booking_details']);
+Route::post('/booking-transaction', [CateringSubscriptionController::class, 'store']);
+Route::post('/check-booking', [CateringSubscriptionController::class, 'booking_details']);
