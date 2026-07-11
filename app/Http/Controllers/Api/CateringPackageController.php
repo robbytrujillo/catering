@@ -20,7 +20,7 @@ class CateringPackageController extends Controller
             'kitchen', 'testimonials', 'tiers', 'tiers.benefits'
         ]);
 
-        $cateringPackage->kitchen->loadCount('cateringPackahes');
+        $cateringPackage->kitchen->loadCount('cateringPackages');
 
         return new CateringPackageApiResource($cateringPackage);
     }
