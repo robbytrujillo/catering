@@ -9,7 +9,7 @@
 
 ## About Laravel
 
-## Build Subscriber Catering Application
+## Build Catering Application
 
 <h2>Catering-Apps</h2>
 

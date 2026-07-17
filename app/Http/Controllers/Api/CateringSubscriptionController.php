@@ -8,4 +8,7 @@ use Illuminate\Http\Request;
 class CateringSubscriptionController extends Controller
 {
     //
+    public function store(StoreCateringSubscribeRequest $request) {
+
+    }
 }
