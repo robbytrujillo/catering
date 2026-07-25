@@ -36,5 +36,9 @@ class CateringSubscriptionController extends Controller
         // Calculate ended_at based on started_at and duration
         $startedAt = Carbon::parse($validatedData['started_at']);
         $endedAt = $startedAt->copy()->addDays($cateringTier->duration);
+
+        $price = $cateringTier->price;
+        $tax = 0.11;
+        $totalTax = $tax * $price;
     }
 }
