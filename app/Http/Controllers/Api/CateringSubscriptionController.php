@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCateringSubscribeRequest;
 use App\Models\CateringPackage;
+use App\Models\CateringSubscription;
 use App\Models\CateringTier;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -56,5 +57,13 @@ class CateringSubscriptionController extends Controller
         $validatedData['ended_at'] = $endedAt->format('Y-d-m');
         
         $validatedData['is_paid'] = 'false';
+
+        $validatedData['booking_trx_id'] = CateringSubscription::generateUniqueTrxId();
+
+        $bookingTransaction = CateringSubscription::create($validatedData);
+
+        $bookingTransaction->load(['cateringPackage', 'cateringTier']);
+
+        return new ApiCateringSubscription($bookingTransaction);
     }
 }
