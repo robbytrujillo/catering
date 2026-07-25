@@ -49,7 +49,7 @@ class CateringSubscriptionController extends Controller
         
         $validatedData['quantity'] = $cateringTier->quantity;
         $validatedData['duration'] = $cateringTier->duration;
-        $validatedData['city'] = $cateringPackage->city;
+        $validatedData['city'] = $cateringPackage->city->name;
         $validatedData['delivery_time'] = "Lunch Time";
 
         // Add started_at and ended_at to validated data
