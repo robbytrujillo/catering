@@ -7,7 +7,7 @@ use App\Http\Requests\StoreCateringSubscribeRequest;
 use App\Models\CateringPackage;
 use App\Models\CateringTier;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
+use Carbon\Carbon;
 
 class CateringSubscriptionController extends Controller
 {
@@ -40,5 +40,21 @@ class CateringSubscriptionController extends Controller
         $price = $cateringTier->price;
         $tax = 0.11;
         $totalTax = $tax * $price;
+        $grandTotal = $price + $tax;
+
+        $validatedData['price'] = $price;
+        $validatedData['total_tax_amount'] = $totalTax;
+        $validatedData['total_amount'] = $grandTotal;
+        
+        $validatedData['quantity'] = $cateringTier->quantity;
+        $validatedData['duration'] = $cateringTier->duration;
+        $validatedData['city'] = $cateringPackage->city;
+        $validatedData['delivery_time'] = "Lunch Time";
+
+        // Add started_at and ended_at to validated data
+        $validatedData['started_at'] = $startedAt->format('Y-d-m');
+        $validatedData['ended_at'] = $endedAt->format('Y-d-m');
+        
+        $validatedData['is_paid'] = 'false';
     }
 }
