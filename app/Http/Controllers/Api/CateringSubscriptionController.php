@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CateringPackage;
 use App\Models\CateringTier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class CateringSubscriptionController extends Controller
 {
@@ -30,5 +31,9 @@ class CateringSubscriptionController extends Controller
             $filePath = $request->file('proof')->store('payment/proofs', 'public');
             $validatedData['proof'] = $filePath;
         }
+
+        // Calculate ended_at based on started_at and duration
+        $startedAt = Carbon::parse($validatedData['started_at']);
+        $endedAt = $startedAt->copy()->addDays($cateringTier->duration);
     }
 }
