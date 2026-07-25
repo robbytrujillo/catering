@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCateringSubscribeRequest;
+use App\Http\Resources\Api\CateringSubscriptionApiResource;
 use App\Models\CateringPackage;
 use App\Models\CateringSubscription;
 use App\Models\CateringTier;
@@ -53,8 +54,8 @@ class CateringSubscriptionController extends Controller
         $validatedData['delivery_time'] = "Lunch Time";
 
         // Add started_at and ended_at to validated data
-        $validatedData['started_at'] = $startedAt->format('Y-d-m');
-        $validatedData['ended_at'] = $endedAt->format('Y-d-m');
+        $validatedData['started_at'] = $startedAt->format('Y-m-d');
+        $validatedData['ended_at'] = $endedAt->format('Y-m-d');
         
         $validatedData['is_paid'] = 'false';
 
@@ -64,6 +65,6 @@ class CateringSubscriptionController extends Controller
 
         $bookingTransaction->load(['cateringPackage', 'cateringTier']);
 
-        return new ApiCateringSubscription($bookingTransaction);
+        return new CateringSubscriptionApiResource($bookingTransaction);
     }
 }
