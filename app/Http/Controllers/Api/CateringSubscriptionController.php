@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCateringSubscribeRequest;
 use App\Models\CateringPackage;
 use App\Models\CateringTier;
 use Illuminate\Http\Request;

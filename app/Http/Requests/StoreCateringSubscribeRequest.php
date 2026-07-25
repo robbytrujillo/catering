@@ -11,7 +11,7 @@ class StoreCateringSubscribeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,15 @@ class StoreCateringSubscribeRequest extends FormRequest
     {
         return [
             //
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'post_code' => 'required|string|max:255',
+            'address' => 'required|string|max:65535',
+            'notes' => 'required|string|max:65535',
+            'started_at' => 'required|date',
+            'catering_package_id' => 'required|integer',
+            'proof' => 'required|file|mimes:png,jpg,jpeg|max:2048',
         ];
     }
 }
