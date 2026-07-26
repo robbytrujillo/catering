@@ -85,9 +85,9 @@ class CateringSubscriptionController extends Controller
             ->first();
 
         if (!$booking) {
-            return response()->json(['message' => 'Booking not found'], '404');
+            return response()->json(['message' => 'Booking not found'], 404);
         }
-        return new ApiCateringSubscription($booking);
 
+        return new CateringSubscriptionApiResource($booking);
     }
 }
