@@ -67,4 +67,27 @@ class CateringSubscriptionController extends Controller
 
         return new CateringSubscriptionApiResource($bookingTransaction);
     }
+
+    public function booking_details(Request $request) {
+
+        $request->validate([
+            'phone' => 'required|string',
+            'booking_trx_id' => 'required|string',
+        ]);
+
+        $booking = CateringSubscription::where('phone', $request->phone)
+            ->where('booking_trx_id', $request->booking_trx_id)
+            ->with([
+                'cateringPackage',
+                'cateringPackage.kitchen',
+                'cateringTier',
+            ])
+            ->first();
+
+        if (!$booking) {
+            return response()->json(['message' => 'Booking not found'], '404');
+        }
+        return new ApiCateringSubscription($booking);
+
+    }
 }
