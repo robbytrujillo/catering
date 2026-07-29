@@ -21,8 +21,8 @@ Route::get('/filters/catering-packages', [CateringPackageController::class, 'fil
 Route::get('/category/{category:slug}', [CategoryController::class, 'show']);
 Route::apiResource('/categories', CategoryController::class);
 
-Route::get('/category/{category:slug}', [CategoryController::class, 'show']);
-Route::apiResource('/categories', CategoryController::class);
+// Route::get('/category/{category:slug}', [CategoryController::class, 'show']);
+// Route::apiResource('/categories', CategoryController::class);
 
 Route::get('/city/{city:slug}', [CityController::class, 'show']);
 Route::apiResource('/city', CityController::class);
