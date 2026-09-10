@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\CategoryApiResource;
+use App\Http\Resources\Api\CateringPackageApiResource;
 use App\Models\Category;
 use App\Models\CateringPackage;
 use App\Models\City;
@@ -42,6 +43,6 @@ class CategoryController extends Controller
             ->with(['city', 'kitchen', 'tiers', 'category'])
             ->get();
 
-        return CateringPackage::collection($cateringPackages);
+        return CateringPackageApiResource::collection($cateringPackages);
     }
 }

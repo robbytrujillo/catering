@@ -13,7 +13,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 // Routing API integration
-Route::get('/catering-packages/{cateringPackage:slug}', [CateringPackageController::class, 'show']);
+Route::get('/catering-package/{cateringPackage:slug}', [CateringPackageController::class, 'show']);
 Route::apiResource('/catering-packages', CateringPackageController::class);
 
 Route::get('/filters/catering-packages', [CateringPackageController::class, 'filterPackages']);
