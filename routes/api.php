@@ -16,7 +16,7 @@ Route::get('/user', function (Request $request) {
 Route::get('/catering-package/{cateringPackage:slug}', [CateringPackageController::class, 'show']);
 Route::apiResource('/catering-packages', CateringPackageController::class);
 
-Route::get('/filters/catering-packages', [CateringPackageController::class, 'filterPackages']);
+Route::get('/filters/catering-packages', [CategoryController::class, 'filterPackages']);
 
 Route::get('/category/{category:slug}', [CategoryController::class, 'show']);
 Route::apiResource('/categories', CategoryController::class);
